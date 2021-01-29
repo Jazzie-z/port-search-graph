@@ -1,0 +1,12 @@
+.wrapper {
+    display:flex;
+}
+.card {
+    height: fit-content;
+}
+.checkbox {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    padding: 10px;
+}

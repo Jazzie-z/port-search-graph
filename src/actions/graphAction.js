@@ -3,14 +3,21 @@ import axios from "axios";
 import { ENV } from "constants/environment";
 import { ERROR_RESPONSE, HEADERS, SUCCESS_RESPONSE } from "utils/httpHelper";
 
-export const getGraphData = () => {
+export const getGraphData = (payload) => {
     return dispatch => {
         dispatch({ type: GRAPH })
-        axios.get(ENV.graph, HEADERS)
+        axios.get(appendQuery(payload), HEADERS)
             .then(res => {
-                return dispatch({
-                    type: GRAPH_SUCCESS,
-                    payload: SUCCESS_RESPONSE(res.data)
+                const payload = res.data
+                if (payload?.length && payload.find(e => e.high || e.low || e.mean)) {
+                    return dispatch({
+                        type: GRAPH_SUCCESS,
+                        payload: SUCCESS_RESPONSE(res.data)
+                    });
+                }
+                dispatch({
+                    type: GRAPH_ERROR,
+                    payload: ERROR_RESPONSE({ message: 'No Data Present' })
                 });
             })
             .catch(err => {
@@ -22,3 +29,5 @@ export const getGraphData = () => {
             })
     };
 }
+
+const appendQuery = ({ origin, destination }) => `${ENV.graph}?origin=${origin}&destination=${destination}` 

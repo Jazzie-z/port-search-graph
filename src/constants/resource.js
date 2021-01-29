@@ -8,3 +8,5 @@ export const staticText = {
         destination: 'Destination'
     }
 }
+
+export const graphTypes = ['mean', 'high', 'low']
