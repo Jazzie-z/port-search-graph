@@ -2,7 +2,7 @@ import { GRAPH, GRAPH_ERROR, GRAPH_SUCCESS } from "actions";
 import axios from "axios";
 import { ENV } from "constants/environment";
 import { ERROR_RESPONSE, HEADERS, SUCCESS_RESPONSE } from "utils/httpHelper";
-
+import { formatGraphData } from "utils/dateHelper";
 export const getGraphData = (payload) => {
     return dispatch => {
         dispatch({ type: GRAPH })
@@ -12,7 +12,7 @@ export const getGraphData = (payload) => {
                 if (payload?.length && payload.find(e => e.high || e.low || e.mean)) {
                     return dispatch({
                         type: GRAPH_SUCCESS,
-                        payload: SUCCESS_RESPONSE(res.data)
+                        payload: SUCCESS_RESPONSE(formatGraphData(res.data))
                     });
                 }
                 dispatch({

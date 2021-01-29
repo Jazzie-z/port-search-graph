@@ -1,20 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DatePicker, Space, Spin } from 'antd';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ErrorMsg from 'components/ErrorMsg/ErrorMsg';
 import PortSelector from 'components/PortSelector/PortSelector'
 import styles from './Filter.module.css'
+import { DATE_FILTER } from 'actions';
 
 const { RangePicker } = DatePicker;
 
 const Filter = () => {
     const [dateRange, setDateRange] = useState(null);
     const { data, error, loading } = useSelector(state => state.port)
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch({ type: DATE_FILTER, payload: dateRange })
+    }, [dateRange])
     const onDateChange = (date) => {
         setDateRange(date)
     }
     if (loading) return <Spin size="large" className={styles.spinner} />
-    if (error) return <ErrorMsg/>
+    if (error) return <ErrorMsg />
     return (
         <Space direction="vertical" size={20} className={styles.container}>
             <PortSelector ports={data} />
