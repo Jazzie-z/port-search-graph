@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import 'antd/dist/antd.css';
 import { getPorts } from 'actions/portAction';
+import Filter from 'components/Filter/Filter';
 
 const App = () => {
     const dispatch = useDispatch()
@@ -9,7 +11,7 @@ const App = () => {
     }, [])
     return (
         <div>
-            
+            <Filter />
         </div>
     )
 }
