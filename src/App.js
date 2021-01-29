@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import 'antd/dist/antd.css';
 import { getPorts } from 'actions/portAction';
 import Filter from 'components/Filter/Filter';
+import Graph from 'components/Graph/Graph';
 
 const App = () => {
     const dispatch = useDispatch()
@@ -12,6 +13,7 @@ const App = () => {
     return (
         <div>
             <Filter />
+            <Graph />
         </div>
     )
 }
