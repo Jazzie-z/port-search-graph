@@ -16,7 +16,7 @@ const Graph = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch({ type: GRAPH_FILTER, payload: ['mean'] })
-    }, [])
+    }, [dispatch])
     if (loading) return <Spin size="large" style={{ display: 'block' }} />
     if (error) return <ErrorMsg description={error.message} />
     const onChange = (payload) => {

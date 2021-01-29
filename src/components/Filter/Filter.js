@@ -14,7 +14,7 @@ const Filter = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch({ type: DATE_FILTER, payload: dateRange })
-    }, [dateRange])
+    }, [dispatch, dateRange])
     const onDateChange = (date) => {
         setDateRange(date)
     }

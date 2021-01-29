@@ -1,7 +1,6 @@
 import { GRAPH, GRAPH_SUCCESS, GRAPH_ERROR, GRAPH_FILTER, DATE_FILTER } from "actions"
 
 const graph = (state = {}, action) => {
-    console.error(action)
     switch (action.type) {
         case GRAPH:
             return { ...state, loading: true }
